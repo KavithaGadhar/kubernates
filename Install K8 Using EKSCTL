@@ -1,29 +1,29 @@
 Create instance:
-	attach IAM role to that instance(admin full prev role has to be created in IAM Role)
+	attach IAM role to that instance(admin full prev role has to be created in IAM Role)--{AdminstrationAccess}
 	
 
 EKSCTL:	
 
 	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 
-
 	sudo mv /tmp/eksctl /usr/local/bin 
 
 	eksctl version
 
-	KUBECTL:
+KUBECTL:
 
-   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-01-04/bin/linux/amd64/kubectl
 
-   chmod +x kubectl
+   chmod +x ./kubectl
 
-   mkdir -p ~/.local/bin
+   mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
 
-   mv ./kubectl ~/.local/bin/kubectl
+   echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+  
+   kubectl version --client
 
-  kubectl version
 
-	AWS-CLI:
+AWS-CLI:
 
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 
